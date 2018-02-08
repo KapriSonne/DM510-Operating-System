@@ -3,7 +3,11 @@
 #include <stdio.h>
 int main()
 {
-    printf( "blah.\n" );
-    //getchar();
+    int number;
+
+    printf("Write a number: ");
+    scanf("%d", &number);
+    printf("You entered: %d\n", number);
+    getchar();
     return 0;
 }
