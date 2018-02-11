@@ -98,6 +98,8 @@ int main()
     //  1  [  ][  ][  ]
     //  2  [  ][56][  ]
 
+    // lets free the three inner arrays, and one outer array
+    // from heap memory
     for(int i = 0 ; i < 3 ; i++ ) {
       free(a[i]);
     }
