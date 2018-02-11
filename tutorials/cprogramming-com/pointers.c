@@ -80,4 +80,15 @@ int main()
     free(array);
     // HEAP:    none
     // Pointer: none
+
+    /* -----------------------------------------------------------
+    // Multi dimension arrays pointer fun: */
+    char **a;
+
+    a=(char **) malloc(3*sizeof(char *));
+
+    for(int i=0;i<3;i++)
+        a[i]=(char *) malloc(3*sizeof(char));
+
+
 }
