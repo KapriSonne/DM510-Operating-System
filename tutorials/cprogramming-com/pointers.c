@@ -83,16 +83,22 @@ int main()
 
     /* -----------------------------------------------------------
     // Multi dimension arrays pointer fun: */
-    char **a;
+    int **a;
 
-    a=(char **) malloc(3*sizeof(char *));
+    a=(int **) malloc(3*sizeof(int *));
 
-    for(int i=0;i<3;i++){
-      a[i]=(char *) malloc(3*sizeof(char));
-    }
+    for(int i=0;i<3;i++)
+        a[i]=(int *) malloc(3*sizeof(int));
 
-    // free the memory again
-    for(int i=0;i<3;i++){
+    // lets assign a value
+    a[2][1]=56;
+    //    [p1][p2][p3] pointer array: p1->0, p2->1, p3->2
+    //
+    //  0  [  ][  ][  ]
+    //  1  [  ][  ][  ]
+    //  2  [  ][56][  ]
+
+    for(int i = 0 ; i < 3 ; i++ ) {
       free(a[i]);
     }
     free(a);
