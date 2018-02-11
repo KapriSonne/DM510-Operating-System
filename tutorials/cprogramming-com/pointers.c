@@ -13,15 +13,17 @@ int main()
     p = &x;
 
     printf("\nx = %d\n",x);
-    printf("\nAddress for x: %p\n",&x );
+    printf("\nAddress for x: %p\n",p);
     printf("\ndereference whats on that address:\n*p on &x => %d\n\n",*p); // dereferencing p (meaning see what at the pointers locating)
 
-    // sets ptr to point to the start of our allocated memory
+    // sets ptr to point to the start of our allocated memory (the address)
     // which has a size of int (typically 4 bytes on 32- and 64-bit systems)
     // the allocated memory cant be used by other programs, so its
-    // important to free it again. (else we get memory leeks)
+    // important to free it again. (else we get memory leaks)
     // when we malloc we allocate in heap memory
     int *ptr = malloc(sizeof(int));
+
+    printf("%p\n",ptr);
 
     // another and better way to archive the same
     // int *ptr = malloc(sizeof(*ptr));
@@ -29,8 +31,11 @@ int main()
     // we allocate another piece of memory
     int *ptr2 = malloc(sizeof(ptr2));
 
-    // assign value to the two allocated memory chunks
+    // assign the value '42' to the allocated memory starting from the address
+    // in heap pointed by ptr
     *ptr = 42;
+
+    // same ^
     *ptr2 = 7;
 
     // lets free the memory again

@@ -1,19 +1,19 @@
 #include <stdio.h>
 
-int main()                            /* Most important part of the program!  */
+int main()
 {
-    int age;                          /* Need a variable... */
+    int age;
 
-    printf( "Please enter your age" );  /* Asks for age */
-    scanf( "%d", &age );                 /* The input is put in age */
-    if ( age < 100 ) {                  /* If the age is less than 100 */
-        printf ("You are pretty young!\n" ); /* Just to show you it works... */
+    printf( "Please enter your age" );
+    scanf( "%d", &age );
+    if ( age < 100 ) {
+        printf ("You are pretty young!\n" );
     }
-    else if ( age == 100 ) {            /* I use else just to show an example */
+    else if ( age == 100 ) {
         printf( "You are old\n" );
     }
     else {
-        printf( "You are really old\n" );     /* Executed if no other statement is */
+        printf( "You are really old\n" );
     }
   return 0;
 }

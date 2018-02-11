@@ -1,0 +1,3 @@
+What is an operating system?:
+  A program that manages the computers hardware. Acts as an intermediary between
+  the user and the hardware
