@@ -29,7 +29,7 @@ int main()
     // int *ptr = malloc(sizeof(*ptr));
 
     // we allocate another piece of memory
-    int *ptr2 = malloc(sizeof(ptr2));
+    int *ptr2 = malloc(sizeof(*ptr2));
 
     // assign the value '42' to the allocated memory starting from the address
     // in heap pointed by ptr
@@ -41,4 +41,43 @@ int main()
     // lets free the memory again
     free(ptr);
     free(ptr2);
+
+    /* -----------------------------------------------------------
+    // Pointer arithmetics: */
+
+    // now we allocate an array in heap of size 5 times the size of int
+    int *array = malloc(5*sizeof(*array));
+    //           0  1  2  3  4
+    // HEAP:    [ ][ ][ ][ ][ ]
+
+    *array = 10;
+    // HEAP:    [10][ ][ ][ ][ ]
+    // Pointer:  ^
+
+    // Now lets increment the pointer to point at the next integer in heap,
+    // and assign the value '20'
+    array++;
+    *array = 20;
+    // HEAP:    [10][20][ ][ ][ ]
+    // Pointer:      ^
+
+    // without incrementing the pointer, we assign current pointed
+    // position + 2 (hence we got the 4th slot) the value 100.
+    *(array + 2) = 100;
+    // HEAP:    [10][20][ ][100][ ]
+    // Pointer:      ^
+
+    // but more readable to access it like an array.
+    // however! - rememeber it counts from whereever the current pointer
+    // is pointing. In this case, we assign 66 to the last element in array.
+    array[3] = 66;
+    // HEAP:    [10][20][ ][100][66]
+    // Pointer:      ^
+
+    // to free the memory, we need to reassign the pointer back to beginning
+    // of our array. We know its at index 1, so:
+    array--;
+    free(array);
+    // HEAP:    none
+    // Pointer: none
 }
