@@ -18,20 +18,21 @@ typedef struct  linked_list{
 
 */
 linked_list *init_linked_list() {
-	// we initialize a root on the stack that points to the first
-	// element in our linked list on the heap
 	linked_list *root;
 	root = malloc(sizeof(struct linked_list));
-	// set everything to NULL
 	root -> data = NULL;
 	root -> previous = NULL;
 	root -> next = NULL;
 	return root;
 }
 
-void add_element( linked_list *list, void *element) {
-	
-	root->next = malloc(sizeof(struct linked_list));
+void add_element(linked_list *list, void *element) {
+	linked_list *fwaggot = malloc(sizeof(linked_list));
+	linked_list *old = list->previous;
+	list->previous = fwaggot;
+	old->next = fwaggot;
+	fwaggot->next = list;
+	fwaggot->previous = old;
 }
 
 int linked_list_size(linked_list *list) {
