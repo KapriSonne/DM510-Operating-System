@@ -8,56 +8,44 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/*
-
-int main() {
-  linked_list * mystacklist = init_linked_list();
-  int a = 5;
-  add_element(mystacklist,&a);
-  add_element(mystacklist,&a);
-  add_element(mystacklist,&a);
-  return 0;
+/* Added a void pointer to element as parameter because I want to initialise
+	 the first node with an element. otherwise - because of the way
+	 'add_element' function is implemented - we would have an empty node that
+	 points to the first real node. The way I've implemented my counter is that
+	 the first node in the list keep track of the total list-size. Hence,
+	 whenever a new node is added, the first node's size is incremented.
+*/
+linked_list *init_linked_list(void *element) {
+    linked_list *init;
+    init = malloc(sizeof(linked_list));
+    init -> data = element;
+    init -> next = NULL;
+    init -> previous = NULL;
+    init -> size = 1; 						// I like counting from one. :-)
+    return init;
 }
 
-*/
-
 /*
-
-typedef struct  linked_list{
-	void *data;
-	struct linked_list *next;
-	struct linked_list *previous;
-} linked_list;
-
+	The add function is implemented recursively. We first check whether a node
+	has a next pointer, if not, we initialize and assign space to a new node in
+	memory. Then the new node will point to its associated data, and set the
+	next- and previous pointer to NULL. Finally, we will make a reference from
+	the previous node to the new, and a reference from our new node to the
+	previous and increment list size with one.
 */
-linked_list *init_linked_list() {
-	// create list root on stack
-	linked_list *root;
-	// allocate root on heap on point to it
-	root = malloc(sizeof(linked_list));
-	// assign NULL to all
-	root -> data = NULL;
-	root -> previous = NULL;
-	root -> next = NULL;
-	return root;
-}
-
 void add_element(linked_list *list, void *element) {
-	linked_list *newNode = malloc(sizeof(linked_list)); // allocate newNode on heap
-	newNode->data = element; // assign the value from element to data
-
-	// if (list->previous) then *old = list->previous
-	// else *old = list
-	linked_list *old = list->previous ? list->previous : list;
-
-	list->previous = newNode;
-	old->next = newNode; // make old node's 'next' point to the new node in the list
-	newNode->previous = old; // make new node's 'prevous' point to the old node in the list
-	newNode->next = list; // make last node's 'next' point to first node in the list
+	if(list->next) {
+	    add_element(list->next, element);
+	  } else {
+	    linked_list *newList = init_linked_list(element);
+	    list->next = newList;
+	    newList->previous = list;
+	  }
+	  return list->size++;
 }
 
 int linked_list_size(linked_list *list) {
-	return 0;
+	return list->size;
 }
 
 void *remove_first(linked_list *list) {
