@@ -43,22 +43,17 @@ linked_list *init_linked_list() {
 }
 
 void add_element(linked_list *list, void *element) {
-	// allocate newNode on heap
-	linked_list *newNode = malloc(sizeof(linked_list));
-	// assign the value from element to data
-	newNode->data = element;
+	linked_list *newNode = malloc(sizeof(linked_list)); // allocate newNode on heap
+	newNode->data = element; // assign the value from element to data
 
 	// if (list->previous) then *old = list->previous
 	// else *old = list
 	linked_list *old = list->previous ? list->previous : list;
 
 	list->previous = newNode;
-	// make old node's 'next' point to the new node in the list
-	old->next = newNode;
-	// make new node's 'prevous' point to the old node in the list
-	newNode->previous = old;
-	// make last node's 'next' point to first node in the list
-	newNode->next = list;
+	old->next = newNode; // make old node's 'next' point to the new node in the list
+	newNode->previous = old; // make new node's 'prevous' point to the old node in the list
+	newNode->next = list; // make last node's 'next' point to first node in the list
 }
 
 int linked_list_size(linked_list *list) {

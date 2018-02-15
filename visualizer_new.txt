@@ -1,0 +1,50 @@
+#include <stdlib.h>
+#include <stdio.h>
+
+typedef struct  linked_list{
+    void *data;
+    struct linked_list *next;
+    struct linked_list *previous;
+} linked_list;
+
+linked_list *init_linked_list() {
+    linked_list *root;
+    root = malloc(sizeof(linked_list));
+    root -> data = NULL;
+    root -> previous = NULL;
+    root -> next = NULL;
+    return root;
+}
+
+void add_element(linked_list *list, void *element) {
+    
+    if (list->data==NULL){
+      list->data = element;
+      linked_list *old = list;
+      old->next = NULL;
+      } else {
+        
+        linked_list *newNode = malloc(sizeof(linked_list));
+        newNode->data = element;
+        linked_list *old = list->previous ? list->previous : list;
+        newNode->previous = old;
+        list->next = newNode;
+        newNode->next = NULL;
+        
+        }
+}
+
+int main() {  
+  linked_list * mystacklist = init_linked_list();
+  
+  //int a = 5;
+  //int b = 10;
+  
+  int *b = malloc(sizeof(*b));
+  *b = 5;
+ 
+  add_element(mystacklist,&b);
+  add_element(mystacklist,&b);
+  add_element(mystacklist,&b);
+  return 0;
+}
