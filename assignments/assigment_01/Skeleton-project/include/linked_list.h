@@ -16,7 +16,8 @@ typedef struct  linked_list{
 /*
  * Initializes an empty linked list, and returns a pointer to the new list.
  */
-linked_list *init_linked_list();
+// changed to take void element as parameters
+linked_list *init_linked_list(void* element);
 
 /*
  * Adds the supplied element to the end of the list
@@ -31,7 +32,7 @@ int linked_list_size(linked_list *list);
 /*
  * Removes and returnes the first element from the list
  */
-void *remove_first(linked_list *list);
+void *remove_first(linked_list **list);
 
 /*
  * Remove the first element from the list that has the same value as supplied in element.

@@ -48,10 +48,26 @@ int linked_list_size(linked_list *list) {
 	return list->size;
 }
 
-void *remove_first(linked_list *list) {
-	return NULL;
+// changed the argument to take a double pointer instead of a single pointer.
+void *remove_first(linked_list **list) {
+void *out = (*list)->data;
+linked_list *next = (*list)->next;
+free(*list);
+*list = next;
+next->previous = NULL;
 }
-
-int remove_element(linked_list *list, void *element) {
-	return -1;
+//
+int remove_element(linked_list **list, void *element) {
+  if((*list)->data==element){
+    (*list)->next->previous = (*list)->previous;
+    remove_first(list);
+    return 0;
+  } else if(!list){
+    return -1;
+  } else {
+    const int retVal = remove_element(&(*list)->next, element);
+    // plus one to keep size of list correct.
+    (*list)->size -= retVal+1;
+    return retVal;
+  }
 }
