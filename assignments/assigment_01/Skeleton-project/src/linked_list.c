@@ -41,9 +41,10 @@ void add_element(linked_list *list, void *element) {
 	    list->next = newList;
 	    newList->previous = list;
 	  }
-	  return list->size++;
+	  list->size++;
 }
 
+// Simply returns the list-size by looking at the current size pointer
 int linked_list_size(linked_list *list) {
 	return list->size;
 }
