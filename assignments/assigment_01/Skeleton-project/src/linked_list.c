@@ -49,22 +49,30 @@ int linked_list_size(linked_list *list) {
 	return list->size;
 }
 
-// changed the argument to take a double pointer instead of a single pointer.
+// changed the argument to take a double pointer instead of a single pointer
+// because we are removing the first element such that the input variable
+// will point to the next list node.
 void *remove_first(linked_list **list) {
 void *out = (*list)->data;
 linked_list *next = (*list)->next;
 free(*list);
 *list = next;
-next->previous = NULL;
+if(next){
+  next->previous = NULL;
 }
-//
+return out;
+}
+
+// changed the argument to take a double pointer instead of a single pointer
+// because if we delete a node, that pointer would be invalid, with a double
+// pointer we obtain the abilty to change the pointer pointing to the element.
 int remove_element(linked_list **list, void *element) {
-  if((*list)->data==element){
-    (*list)->next->previous = (*list)->previous;
+  if(!*list){
+    return -1;
+  } else if((*list)->data==element){
+    if((*list)->next) (*list)->next->previous = (*list)->previous;
     remove_first(list);
     return 0;
-  } else if(!list){
-    return -1;
   } else {
     const int retVal = remove_element(&(*list)->next, element);
     // plus one to keep size of list correct.

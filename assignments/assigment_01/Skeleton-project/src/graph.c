@@ -2,32 +2,71 @@
 #include "graph.h"
 #include <stdio.h>
 
+// function that runs one time to create the vertices
+// when we initialise them in the read_graph-function
+vertex * make_verticies(size_t n){
+    vertex *vert = calloc(n, sizeof(*vert));
+    for(size_t i = 0; i < n; i++){
+        vert[i].id = i;
+    }
+		return vert;
+}
+
+
+//
 graph *read_graph(char *filename) {
+	graph *init = malloc(sizeof(graph));
+
+	// open file in read mode
 	FILE *file = fopen(filename, "r");
+
+	// create placeholder for data
+	size_t atLine = 0;
 	char *myString = NULL;
-	unsigned int where_am_I = 0;
 
-	
+	// read first line in text-file
+	getline(&myString, &atLine, file);
 
-	getline(myString, where_am_I, file);
-}
+	// convert char to integer
+  init -> number_vertices = atoi(myString);
+  init->vertices = make_verticies(init -> number_vertices);
+  // for debugging purposes
 
-/*
-	if(file == 0){
-		printf("file could not open\n\n");
-	} else {
-		int x;
-		while  ( ( x = fgetc( file ) ) != EOF )
-		{
-				printf( "%c", x );
+  // With this loop we go through the rows of the matrix with getline,
+	for(size_t i = 0; i < (init -> number_vertices); i++){
+		getline(&myString, &atLine, file);
+    // here we loop coloumn wise through the matrix
+		for(size_t j = 0; j < (init -> number_vertices); j++){
+      // if we find a '1'
+			if('1'==myString[j]){
+        // first we check if list in initialised then,
+        // based on the coordinates(i,j) where the '1' is found 'i' will be
+        // having an outgoing nabour to j, and j will have an ingoing nabour to
+        // i (i->j)
+        if(init->vertices[i].out_neighbours){
+          add_element(init->vertices[i].out_neighbours, init->vertices + j);
+        } else {
+          init->vertices[i].out_neighbours
+            = init_linked_list(init->vertices + j);
+        }
+
+        if(init->vertices[j].in_neighbours){
+          add_element(init->vertices[j].in_neighbours, init->vertices + i);
+        } else {
+          init->vertices[j].in_neighbours
+            = init_linked_list(init->vertices + i);
+        }
+			}
 		}
-		fclose(file);
 	}
+	fclose(file);
+	free(myString);
+	return init;
 }
-
-*/
 
 
 void print_graph(graph *g) {
+
+	printf("--I'm a graph!\n\n");
 
 }

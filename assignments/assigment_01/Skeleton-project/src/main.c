@@ -15,6 +15,14 @@ void show_usage() {
 	printf("===================================\n");
 }
 
+// help function to free the list from memory recursively.
+void free_list(linked_list * list){
+	if(list){
+		free_list(list->next);
+		free(list);
+	}
+}
+
 // First command line parameter - input file
 int main(int argc, char *argv[]) {
 
@@ -29,4 +37,14 @@ int main(int argc, char *argv[]) {
 
 	// Run cycle detection algorithm and output result
 	cycle_detection(g);
+
+	// For every vertex, free them, then free our graph.
+	for (size_t i = 0; i < g->number_vertices; i++) {
+		g->vertices[i];
+		free_list(g->vertices[i].out_neighbours);
+		free_list(g->vertices[i].in_neighbours);
+	}
+	free(g->vertices);
+	free(g);
+
 }
