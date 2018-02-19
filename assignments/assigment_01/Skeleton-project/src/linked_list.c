@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-/* Added a void pointer to element as parameter because I want to initialise
+/* Added a void pointer to element as parameter because I want to initialize
 	 the first node with an element. otherwise - because of the way
 	 'add_element' function is implemented - we would have an empty node that
 	 points to the first real node. The way I've implemented my counter is that
@@ -18,20 +18,20 @@
 linked_list *init_linked_list(void *element) {
     linked_list *init;
     init = malloc(sizeof(linked_list));
-    init -> data = element;
-    init -> next = NULL;
-    init -> previous = NULL;
-    init -> size = 1; 						// I like counting from one. :-)
+    init->data = element;
+    init->next = NULL;
+    init->previous = NULL;
+    init->size = 1; 						// I like counting from one. :-)
     return init;
 }
 
 /*
-	The add function is implemented recursively. We first check whether a node
-	has a next pointer, if not, we initialize and assign space to a new node in
-	memory. Then the new node will point to its associated data, and set the
-	next- and previous pointer to NULL. Finally, we will make a reference from
-	the previous node to the new, and a reference from our new node to the
-	previous and increment list size with one.
+  if list hast no next-pointer we are at the end of our list, so we initialize a
+  new node and update its pointers and finally increment the list size by one.
+
+  if it does have a next pointer it means we are not at the end of the list, so
+  we recursivly traverse to the end before adding a new node, then we update
+  pointers etc.
 */
 void add_element(linked_list *list, void *element) {
 	if(list->next) {
@@ -44,14 +44,18 @@ void add_element(linked_list *list, void *element) {
 	  list->size++;
 }
 
-// Simply returns the list-size by looking at the current size pointer
+/*
+  Simply returns the list-size by looking at the first node in list's size.
+*/
 int linked_list_size(linked_list *list) {
 	return list->size;
 }
 
-// changed the argument to take a double pointer instead of a single pointer
-// because we are removing the first element such that the input variable
-// will point to the next list node.
+/*
+  changed the argument to take a double pointer instead of a single pointer
+  because we are removing the first element such that the input variable
+  will point to the next node in list.
+*/
 void *remove_first(linked_list **list) {
 void *out = (*list)->data;
 linked_list *next = (*list)->next;
@@ -63,9 +67,11 @@ if(next){
 return out;
 }
 
-// changed the argument to take a double pointer instead of a single pointer
-// because if we delete a node, that pointer would be invalid, with a double
-// pointer we obtain the abilty to change the pointer pointing to the element.
+/*
+  changed the argument to take a double pointer instead of a single pointer
+  because if we delete a node, that pointer would be invalid, with a double
+  pointer we obtain the abilty to change the pointer pointing to the element.
+*/
 int remove_element(linked_list **list, void *element) {
   if(!*list){
     return -1;

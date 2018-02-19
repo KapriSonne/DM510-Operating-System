@@ -4,23 +4,25 @@
 
 typedef vertex* set;
 
-
-// we create an array of pointers to vertices where a pointer is initialised to
-// zero if the vertex has ingoing nabours, otherwise it will point the
-// vertex it self.
-set * no_edges(graph *g){
+/*
+  we create an array of pointers to vertices where a pointer is initialised to
+  zero if the vertex has ingoing nabours, otherwise it will point the
+  vertex it self.
+*/
+set *noEdges(graph *g){
   set *S = calloc(g->number_vertices, sizeof(*S));
   for (size_t i = 0; i < g->number_vertices; i++) {
     if(!(g->vertices[i].in_neighbours)) S[i] = g->vertices+i;
   }
   return S;
 }
-
-// scans the array and returns the first pointer which isnt zero.
-vertex * retrive(set *S, size_t n){
+/*
+  scans the array and returns the first pointer which isnt zero.
+*/
+vertex *get(set *S, size_t n){
   for (size_t i = 0; i < n; i++) {
     if(S[i]){
-      vertex * old = S[i];
+      vertex *old = S[i];
       S[i] = NULL;
       return old;
     }
@@ -28,12 +30,14 @@ vertex * retrive(set *S, size_t n){
   return NULL;
 }
 
-// follows the pseudocode on Kahns algorithm
+/*
+  follows the pseudocode on Kahns algorithm
+*/
 void cycle_detection(graph *g) {
   linked_list *list = NULL;
-  set *S = no_edges(g);
+  set *S = noEdges(g);
   vertex *n;
-  while((n=retrive(S,g->number_vertices)) ){
+  while((n=get(S,g->number_vertices)) ){
     if(list){
       add_element(list, n);
     } else{
