@@ -1,0 +1,31 @@
+cmd commands:
+-----------------
+
+$man             // shows manual
+$man             // read(2) is syscalls
+$man man         // gives all the different types of calls
+$strace          // show all syscalls on a program
+
+$setfacl -m u:username:r filename   // this instead of chmod<xxx>
+$getfacl filename                   //
+$top                                // see processes running
+$finger <username>                  //
+$df                                 // filesystem
+$df -H                              // -H makes is human readable
+$lsmod                              // list all modules loaded
+
+
+other:
+----------------
+ctrl+alt+F1     // switch graphical interface off
+ctrl+alt+F7     // switch back
+
+
+Often asked on exams:
+  - what is a policy: what will be done?
+  - what is a mechanism: how to do it?
+
+DTrace:
+----------------------
+
+lookup perf
