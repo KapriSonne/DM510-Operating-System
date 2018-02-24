@@ -1,0 +1,17 @@
+Lecture 5
+---------------------------
+Syscall = call to the kernell, code thats exexuted in kernel land, that user land cant edit
+process = program in execution
+  - can either be I/O- or CPU-bounded
+
+threads =
+Task = process or threads
+scheduler -> long-term (job-schedular), short-term (cpu-schedular)
+
+producer-consumer problem:
+  - unbounded-buffer
+  - bounded-buffer
+
+synchronization:
+  - blocking      -> synchronous
+  - non-blocking  -> asynchronous
