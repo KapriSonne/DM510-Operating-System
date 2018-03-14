@@ -50,9 +50,9 @@ Makefile		|	/arch/um/kernel/
 
 Compile test-files locally:
 -------------
-	~$cc test1.c -I/home/jegyl16/Desktop/fourth_semester/DM501-OS/assignments/assigment_02/dm510/linux-4.15 -o test1
+	cc test1.c -I/home/jegyl16/Desktop/ -o test1
 
-	~$cc test2.c -I/home/jegyl16/Desktop/fourth_semester/DM501-OS/assignments/assigment_02/dm510/linux-4.15 -o test2
+	cc test2.c -I/home/jegyl16/Desktop/ -o test2
 
 Now, try it from the virtual linux system :-)
 
