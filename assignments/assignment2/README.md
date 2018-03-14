@@ -7,9 +7,11 @@ Download it here: https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.15.tar.gz
 SETUP: 
 ---------
 1:	
-gunzip linux-4.15.tar.gz
-tar -xvf linux-4.15.tar
-rm linux-4.15.tar
+	gunzip linux-4.15.tar.gz
+
+	tar -xvf linux-4.15.tar
+
+	rm linux-4.15.tar
 
 2:	cd linux-4.15
 
