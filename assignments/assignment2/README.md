@@ -14,13 +14,15 @@ SETUP:
 
 	rm linux-4.15.tar
 
-2:	cd linux-4.15
+2:
 
-3:	cp /home/daniel/DM510-2018/root_fs .
+	cd linux-4.15
 
-4:	make defconfig ARCH=um
+	cp /home/daniel/DM510-2018/root_fs .
 
-5:	make ARCH=um linux
+	make defconfig ARCH=um
+
+	make ARCH=um linux
 
 RUN:
 --------
