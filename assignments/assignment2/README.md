@@ -35,7 +35,8 @@ RUN:
 
 	mount none /mnt/tmp -t hostfs -o /home/your_imada_login/dm510
 
-	cp these files into the kernel:
+cp these files into the kernel:
+---------
 
 filename		|	address
 ------------------------|-----------------------------------------------
