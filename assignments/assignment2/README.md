@@ -48,9 +48,11 @@ syscall_64.tbl		|	/arch/x86/entry/syscalls/
 unistd_64.h		|	/arch/x86/include/generated/uapi/asm/
 Makefile		|	/arch/um/kernel/
 
-10:	compile testfiles locally:
-~$cc test1.c -I/home/jegyl16/Desktop/fourth_semester/DM501-OS/assignments/assigment_02/dm510/linux-4.15 -o test1
-~$cc test2.c -I/home/jegyl16/Desktop/fourth_semester/DM501-OS/assignments/assigment_02/dm510/linux-4.15 -o test2
+Compile test-files locally:
+-------------
+	~$cc test1.c -I/home/jegyl16/Desktop/fourth_semester/DM501-OS/assignments/assigment_02/dm510/linux-4.15 -o test1
+
+	~$cc test2.c -I/home/jegyl16/Desktop/fourth_semester/DM501-OS/assignments/assigment_02/dm510/linux-4.15 -o test2
 
 Now, try it from the virtual linux system :-)
 
