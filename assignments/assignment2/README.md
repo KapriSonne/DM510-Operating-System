@@ -54,8 +54,8 @@ TEST:
 	
 	cd sources
 	
-	cc cc test1.c -o test1 -I arch/um/kernel
+	cc test1.c -o test1 -I arch/um/kernel
 
-	cc cc test2.c -o test2 -I arch/um/kernel
+	cc test2.c -o test2 -I arch/um/kernel
 
 
