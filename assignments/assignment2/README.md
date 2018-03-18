@@ -42,6 +42,8 @@ RUN:
 	./linux
     or
 	./linux con1=xterm con2=xterm
+	
+	login: root
 
 	mkdir /mnt/tmp
 
