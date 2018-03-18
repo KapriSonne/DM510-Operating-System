@@ -7,7 +7,7 @@ Download it here: https://www.kernel.org/pub/linux/kernel/v4.x/linux-4.15.tar.gz
 
 SETUP: 
 ---------
-1:
+UNZIP:
 
 	gunzip linux-4.15.tar.gz
 
@@ -15,7 +15,7 @@ SETUP:
 
 	rm linux-4.15.tar
 
-2:
+GET FILESYSTEM:
 
 	cd linux-4.15
 
@@ -27,7 +27,7 @@ SETUP:
 
 	run bashscript ./setup.sh
 	
-3:
+COMPILE KERNEL:
 
 	cd ..
 	
@@ -36,8 +36,17 @@ SETUP:
 	make defconfig ARCH=um
 
 	make ARCH=um linux
+	
+COMPILE TESTFILES:
+-------------
+	
+	cd sources
+	
+	cc test1.c -o test1 -I arch/um/kernel
 
-RUN:
+	cc test2.c -o test2 -I arch/um/kernel
+
+RUN (virtual linux):
 --------
 	./linux
     or
@@ -49,17 +58,16 @@ RUN:
 
 	mount none /mnt/tmp -t hostfs -o /home/<user>/dm510
 	
-	cd /mnt/tmp/	
-
-
-TEST:
--------------
-	cd ..
+	cd /mnt/tmp/sources/
 	
-	cd sources
+	./test1 "this is a message"
+	./test2 "this is also a message"
 	
-	cc test1.c -o test1 -I arch/um/kernel
 
-	cc test2.c -o test2 -I arch/um/kernel
+
+
+
+	
+
 
 
