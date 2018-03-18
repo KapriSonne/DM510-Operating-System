@@ -21,6 +21,8 @@ SETUP:
 
 	cp /home/daniel/DM510-2018/root_fs .
 
+	run bashscript ./setup.sh
+
 	make defconfig ARCH=um
 
 	make ARCH=um linux
@@ -35,18 +37,6 @@ RUN:
 
 	mount none /mnt/tmp -t hostfs -o /home/your_imada_login/dm510
 
-cp these files into the kernel:
----------
-
-filename		|	address
-------------------------|-----------------------------------------------
-talk.h			|	/arch/um/include/asm
-talk.c			|	/arch/um/kernel
-test1.c			|	anywhere in user-land
-test2.c			|	anywhere in user-land
-syscall_64.tbl		|	/arch/x86/entry/syscalls/
-unistd_64.h		|	/arch/x86/include/generated/uapi/asm/
-Makefile		|	/arch/um/kernel/
 
 Compile test-files locally:
 -------------
