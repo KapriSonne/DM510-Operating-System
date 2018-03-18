@@ -28,6 +28,7 @@ SETUP:
 	run bashscript ./setup.sh
 	
 3:
+
 	cd ..
 	
 	cd linux-4.15
