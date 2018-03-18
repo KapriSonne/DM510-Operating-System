@@ -20,8 +20,17 @@ SETUP:
 	cd linux-4.15
 
 	cp /home/daniel/DM510-2018/root_fs .
+	
+	cd ..
+	
+	cd sources
 
 	run bashscript ./setup.sh
+	
+3:
+	cd ..
+	
+	cd linux-4.15
 
 	make defconfig ARCH=um
 
@@ -38,12 +47,14 @@ RUN:
 	mount none /mnt/tmp -t hostfs -o /home/your_imada_login/dm510
 
 
-Compile test-files locally:
+TEST:
 -------------
-	cc test1.c -I/home/jegyl16/Desktop/ -o test1
+	cd ..
+	
+	cd sources
+	
+	cc cc test1.c -o test1 -I arch/um/kernel
 
-	cc test2.c -I/home/jegyl16/Desktop/ -o test2
-
-Now, try it from the virtual linux system :-)
+	cc cc test2.c -o test2 -I arch/um/kernel
 
 
