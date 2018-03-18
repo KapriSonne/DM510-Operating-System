@@ -47,7 +47,9 @@ RUN:
 
 	mkdir /mnt/tmp
 
-	mount none /mnt/tmp -t hostfs -o /home/your_imada_login/dm510
+	mount none /mnt/tmp -t hostfs -o /home/<user>/dm510
+	
+	cd /mnt/tmp/	
 
 
 TEST:
