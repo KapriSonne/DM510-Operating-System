@@ -1,5 +1,9 @@
 Add system calls to the linux kernel.
 --------------------------------------
+This project is part of the DM510: Operating Systems at Southern University of Denmark.
+The goal was to implement a way of sending messages to a linux kernel, and read it as well.
+
+To test is made; test1 which sends a message as command line argument, then waits for one second, and reads the message from the kernel. test2 which waits (listens) for a message to be send to the kernel, then replaces this message which its own messeage passed as command line argument.
 
 Linux kernel used: Linux 4.15
 
