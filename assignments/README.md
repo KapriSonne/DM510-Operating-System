@@ -1,3 +1,3 @@
-# DM501-OS
+# DM510-OS
 
 Assignments for the course
